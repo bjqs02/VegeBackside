@@ -45,7 +45,7 @@ class adminAbout extends Component {
                                         {farmer.fName}
                                     </td>
                                     <td className='text-center'>
-                                        <a className='btn btn-warning btn-sm' href={`/admin/farmer/update/${farmer.fId}`}>更新</a>
+                                        <a className='btn btn-warning btn-sm' href={`/admin/farmer/edit/${farmer.fId}`}>更新</a>
                                     </td>
                                     <td className='text-center'>
                                         <a className='btn btn-danger btn-sm' href={`/admin/farmer/delete/${farmer.fId}`}>刪除</a>
@@ -80,7 +80,7 @@ class adminAbout extends Component {
                                         {sgs.item}
                                     </td>
                                     <td className='text-center'>
-                                        <a className='btn btn-warning btn-sm' href={`/admin/sgs/update/${sgs.sgsId}`}>更新</a>
+                                        <a className='btn btn-warning btn-sm' href={`/admin/sgs/edit/${sgs.sgsId}`}>更新</a>
                                     </td>
                                     <td className='text-center'>
                                         <a className='btn btn-danger btn-sm' href={`/admin/sgs/delete/${sgs.sgsId}`}>刪除</a>

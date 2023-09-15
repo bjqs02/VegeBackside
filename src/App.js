@@ -5,6 +5,8 @@ import logo from './vegeLogo.png';
 import "bootstrap/dist/css/bootstrap.min.css";
 import adminIndex from './components/adminIndex';
 import adminAbout from './components/adminAbout';
+import farmerNew from './components/adminAboutFarmerNew';
+import farmerEdit from './components/adminAboutFarmerEdit';
 
 class App extends Component {
 
@@ -19,6 +21,8 @@ class App extends Component {
             <Route path="/" component={adminIndex} exact />
             <Route path="/admin/index" component={adminIndex} exact />
             <Route path="/admin/about" component={adminAbout} exact />
+            <Route path="/admin/farmer/new" component={farmerNew} exact />
+            <Route path="/admin/farmer/edit/:id" component={farmerEdit} exact />
           </Switch>
         </div>
       </BrowserRouter>
