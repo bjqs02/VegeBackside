@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <BrowserRouter>
       <header className='ms-5'>
-        <img src={logo} style={{height: '70px', position: 'fixed', top: '30px'}} className='img-fluid' alt='logo'/>
+        <a href='/'><img src={logo} style={{height: '70px', position: 'fixed', top: '30px'}} className='img-fluid' alt='logo'/></a>
       </header>
         <div>
           <Switch>
