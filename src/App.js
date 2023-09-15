@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import TodoIndex from './components/TodoIndex';
+import adminIndex from './components/adminIndex';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends Component {
@@ -11,8 +11,8 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <Switch>
-            <Route path="/" component={TodoIndex} exact />
-            <Route path="/todo/list" component={TodoIndex} exact />
+            <Route path="/" component={adminIndex} exact />
+            <Route path="/admin/index" component={adminIndex} exact />
           </Switch>
         </div>
       </BrowserRouter>
