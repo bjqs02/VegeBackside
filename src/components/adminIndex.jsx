@@ -17,8 +17,8 @@ class adminIndex extends Component {
         ]
     }
     render() {
-        return (<div className='container ms-auto me-auto mt-5 w-50'>
-            <h3>VEGE 後台</h3>
+        return (<div className='container ms-auto me-auto w-50'>
+            <h3 className='text-center mt-5'>VEGE 後台</h3>
             <hr />
             <table className='table table-borderless table-hover'>
                 <thead>
