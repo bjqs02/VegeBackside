@@ -2,44 +2,78 @@ import React, { Component } from 'react';
 // import axios from 'axios';  
 
 class adminIndex extends Component {
-    state = {}
+    state = {
+        webList: [
+            { "webId": 1, "title": "關於我們", "path":"about" },
+            { "webId": 2, "title": "最新活動", "path":"activity" },
+            { "webId": 3, "title": "蔬果專欄", "path":"blog" },
+            { "webId": 4, "title": "常見QA", "path":"qna" },
+        ],
+        adminList: [
+            { "listId": 1, "title": "會員資料管理", "path":"customer" },
+            { "listId": 2, "title": "產品管理", "path":"product" },
+            { "listId": 3, "title": "訂單管理", "path":"order" },
+            { "listId": 4, "title": "訊息管理", "path":"message" },
+        ]
+    }
     render() {
-        return (<div className='container-sm ms-auto me-auto mt-5'>
+        return (<div className='container ms-auto me-auto mt-5 w-50'>
             <h3>VEGE 後台</h3>
             <hr />
-            <table className='table'>
-                <tr>
-                    <td>
-                        關於我們管理
-                    </td>
-                    <td>
-                        <button className='btn btn-sm btn-warning'>進入</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        產品管理
-                    </td>
-                    <td>
-                        <button className='btn btn-sm btn-warning'>進入</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                    訂單管理
-                    </td>
-                    <td>
-                        <button className='btn btn-sm btn-warning'>進入</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                    會員資料管理
-                    </td>
-                    <td>
-                        <button className='btn btn-sm btn-warning'>進入</button>
-                    </td>
-                </tr>
+            <table className='table table-borderless table-hover'>
+                <thead>
+                    <tr className='align-middle'>
+                        <th>
+                            網站頁面管理
+                        </th>
+                        <th className='text-center'>
+                            進入頁面
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        this.state.webList.map((webItem) =>
+                            <tr className='align-middle'>
+                                <td>
+                                    {webItem.title}
+                                </td>
+                                <td className='text-center'>
+                                    <a className='btn btn-success btn-sm' href={`/admin/${webItem.path}`}>進入</a>
+                                </td>
+                            </tr>
+
+                        )
+                    }
+                </tbody>
+            </table>
+            <hr />
+            <table className='table table-borderless table-hover'>
+                <thead>
+                    <tr className='align-middle'>
+                        <th>
+                            管理項目
+                        </th>
+                        <th className='text-center'>
+                            進入頁面
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        this.state.adminList.map((adminItem) =>
+                            <tr className='align-middle'>
+                                <td>
+                                    {adminItem.title}
+                                </td>
+                                <td className='text-center'>
+                                    <a className='btn btn-success btn-sm' href={`/admin/${adminItem.path}`}>進入</a>
+                                </td>
+                            </tr>
+
+                        )
+                    }
+                </tbody>
             </table>
 
         </div>
