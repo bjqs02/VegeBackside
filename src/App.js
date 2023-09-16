@@ -10,6 +10,7 @@ import farmerEdit from './components/adminAboutFarmerEdit';
 import farmerDelete from './components/adminAboutFarmerDelete';
 import sgsNew from './components/adminAboutSgsNew';
 import sgsDelete from './components/adminAboutSgsDelete';
+import adminActivity from './components/adminActivity';
 
 class App extends Component {
 
@@ -21,14 +22,18 @@ class App extends Component {
       </header>
         <div>
           <Switch>
+            {/* 首頁 */}
             <Route path="/" component={adminIndex} exact />
             <Route path="/admin/index" component={adminIndex} exact />
+            {/* 關於我們 相關路徑 */}
             <Route path="/admin/about" component={adminAbout} exact />
             <Route path="/admin/farmer/new" component={farmerNew} exact />
             <Route path="/admin/farmer/edit/:id" component={farmerEdit} exact />
             <Route path="/admin/farmer/delete/:id" component={farmerDelete} exact />
             <Route path="/admin/sgs/new" component={sgsNew} exact />
             <Route path="/admin/sgs/delete/:id" component={sgsDelete} exact />
+            {/* 最新活動 相關路徑 */}
+            <Route path="/admin/activity" component={adminActivity} exact />
           </Switch>
         </div>
       </BrowserRouter>
