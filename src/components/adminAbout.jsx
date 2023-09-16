@@ -64,8 +64,8 @@ class adminAbout extends Component {
                     <thead className='sticky-top'>
                         <tr className='align-middle'>
                             <th>日期</th>
-                            <th>項目</th>
-                            <th>&nbsp;</th>
+                            <th>產地</th>
+                            <th>小農-產物</th>
                             <th className='text-center'><a className='btn btn-success btn-sm' href={`/admin/sgs/new`}>新增</a></th>
                         </tr>
                     </thead>
@@ -77,10 +77,10 @@ class adminAbout extends Component {
                                         {sgs.date}
                                     </td>
                                     <td>
-                                        {sgs.item}
+                                        {sgs.origin}
                                     </td>
-                                    <td className='text-center'>
-                                        <a className='btn btn-warning btn-sm' href={`/admin/sgs/edit/${sgs.sgsId}`}>更新</a>
+                                    <td>
+                                        {sgs.item}
                                     </td>
                                     <td className='text-center'>
                                         <a className='btn btn-danger btn-sm' href={`/admin/sgs/delete/${sgs.sgsId}`}>刪除</a>

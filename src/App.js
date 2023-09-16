@@ -8,6 +8,8 @@ import adminAbout from './components/adminAbout';
 import farmerNew from './components/adminAboutFarmerNew';
 import farmerEdit from './components/adminAboutFarmerEdit';
 import farmerDelete from './components/adminAboutFarmerDelete';
+import sgsNew from './components/adminAboutSgsNew';
+import sgsDelete from './components/adminAboutSgsDelete';
 
 class App extends Component {
 
@@ -25,6 +27,8 @@ class App extends Component {
             <Route path="/admin/farmer/new" component={farmerNew} exact />
             <Route path="/admin/farmer/edit/:id" component={farmerEdit} exact />
             <Route path="/admin/farmer/delete/:id" component={farmerDelete} exact />
+            <Route path="/admin/sgs/new" component={sgsNew} exact />
+            <Route path="/admin/sgs/delete/:id" component={sgsDelete} exact />
           </Switch>
         </div>
       </BrowserRouter>
