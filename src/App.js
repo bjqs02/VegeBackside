@@ -7,6 +7,7 @@ import adminIndex from './components/adminIndex';
 import adminAbout from './components/adminAbout';
 import farmerNew from './components/adminAboutFarmerNew';
 import farmerEdit from './components/adminAboutFarmerEdit';
+import farmerDelete from './components/adminAboutFarmerDelete';
 
 class App extends Component {
 
@@ -23,6 +24,7 @@ class App extends Component {
             <Route path="/admin/about" component={adminAbout} exact />
             <Route path="/admin/farmer/new" component={farmerNew} exact />
             <Route path="/admin/farmer/edit/:id" component={farmerEdit} exact />
+            <Route path="/admin/farmer/delete/:id" component={farmerDelete} exact />
           </Switch>
         </div>
       </BrowserRouter>

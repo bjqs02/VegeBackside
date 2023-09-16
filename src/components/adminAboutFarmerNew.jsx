@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-// import axios from 'axios';
 
 class farmerNew extends Component {
     state = {
@@ -33,7 +32,7 @@ class farmerNew extends Component {
                                     onChange={ this.area_change } /> 
                             </div>
                             <div className="form-group mt-3">
-                                <label className="control-label" htmlFor="Veges">所在地區</label>
+                                <label className="control-label" htmlFor="Veges">種植產物</label>
                                 <textarea className="form-control" 
                                     id="Veges" name="Veges" 
                                     onChange={ this.vege_change } /> 
