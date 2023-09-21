@@ -34,7 +34,7 @@ class adminIndex extends Component {
                 <tbody>
                     {
                         this.state.webList.map((webItem) =>
-                            <tr className='align-middle'>
+                            <tr key={webItem.webId} className='align-middle'>
                                 <td>
                                     {webItem.title}
                                 </td>
@@ -62,7 +62,7 @@ class adminIndex extends Component {
                 <tbody>
                     {
                         this.state.adminList.map((adminItem) =>
-                            <tr className='align-middle'>
+                            <tr key={adminItem.listId} className='align-middle'>
                                 <td>
                                     {adminItem.title}
                                 </td>

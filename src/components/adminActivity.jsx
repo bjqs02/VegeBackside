@@ -37,7 +37,7 @@ class adminActivity extends Component {
                     <tbody>
                         {
                             this.state.farmerList.map((farmer) =>
-                                <tr className='align-middle'>
+                                <tr key={farmer.fId} className='align-middle'>
                                     <td>
                                         {farmer.fId}
                                     </td>
@@ -72,7 +72,7 @@ class adminActivity extends Component {
                     <tbody>
                         {
                             this.state.sgsList.map((sgs) =>
-                                <tr className='align-middle'>
+                                <tr key={sgs.sgsId} className='align-middle'>
                                     <td>
                                         {sgs.date}
                                     </td>

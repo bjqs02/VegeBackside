@@ -37,7 +37,7 @@ class adminAbout extends Component {
                     <tbody>
                         {
                             this.state.farmerList.map((farmer) =>
-                                <tr className='align-middle'>
+                                <tr key={farmer.fId} className='align-middle'>
                                     <td>
                                         {farmer.fId}
                                     </td>
@@ -71,8 +71,8 @@ class adminAbout extends Component {
                     </thead>
                     <tbody>
                         {
-                            this.state.sgsList.map((sgs) =>
-                                <tr className='align-middle'>
+                            this.state.sgsList.map((sgs, index) =>
+                                <tr key={index} className='align-middle'>
                                     <td>
                                         {sgs.date}
                                     </td>

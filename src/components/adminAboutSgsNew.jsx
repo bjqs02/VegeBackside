@@ -44,14 +44,14 @@ class sgsNew extends Component {
                                 <select name="Farmers" id="Farmers" className='form-select w-50' onChange={ this.farmer_change }>
                                     {
                                         this.state.farmerList.map((farmer) =>
-                                        <option value={`${farmer.fId}-${farmer.fName}`} >{farmer.fName}</option>        
+                                        <option key={farmer.fId} value={`${farmer.fId}-${farmer.fName}`} >{farmer.fName}</option>        
                                     )
                                     }
                                 </select>
                                 <select name="Veges" id="Veges" className='form-select w-50' onChange={ this.vege_change }>
                                     {
                                         this.state.vgList.map((vg) =>
-                                        <option value={vg.vgName} >{vg.vgName}</option>        
+                                        <option  key={vg.vgId} value={vg.vgName} >{vg.vgName}</option>        
                                     )
                                     }
                                 </select>
