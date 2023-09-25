@@ -12,6 +12,8 @@ import sgsNew from './components/adminAboutSgsNew';
 import sgsDelete from './components/adminAboutSgsDelete';
 import adminActivity from './components/adminActivity';
 
+import adminOrder from './components/adminOrder';
+
 class App extends Component {
 
   render() {
@@ -34,6 +36,10 @@ class App extends Component {
             <Route path="/admin/sgs/delete/:id" component={sgsDelete} exact />
             {/* 最新活動 相關路徑 */}
             <Route path="/admin/activity" component={adminActivity} exact />
+
+            {/* 訂單管理 相關路徑 */}
+            <Route path="/admin/order" component={adminOrder} />
+
           </Switch>
         </div>
       </BrowserRouter>
