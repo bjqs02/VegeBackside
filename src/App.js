@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import logo from './vegeLogo.png';
 
+
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import adminIndex from './components/adminIndex';
 import adminAbout from './components/adminAbout';
@@ -11,6 +13,9 @@ import farmerDelete from './components/adminAboutFarmerDelete';
 import sgsNew from './components/adminAboutSgsNew';
 import sgsDelete from './components/adminAboutSgsDelete';
 import adminActivity from './components/adminActivity';
+import activityNew from './components/adminActivityNew';
+import activityEdit from './components/adminActivityEdit';
+import activityDelete from './components/adminActivityDelete';
 
 import adminOrder from './components/adminOrder';
 
@@ -36,6 +41,10 @@ class App extends Component {
             <Route path="/admin/sgs/delete/:id" component={sgsDelete} exact />
             {/* 最新活動 相關路徑 */}
             <Route path="/admin/activity" component={adminActivity} exact />
+            <Route path="/admin/activity/new" component={activityNew} exact />
+            <Route path="/admin/activity/edit/:id" component={activityEdit} exact />
+            <Route path="/admin/activity/delete/:id" component={activityDelete} exact />
+
 
             {/* 訂單管理 相關路徑 */}
             <Route path="/admin/order" component={adminOrder} />
