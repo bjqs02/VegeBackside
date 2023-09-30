@@ -2,11 +2,15 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+const MySwal = withReactContent(Swal);
 
 class activityNew extends Component {
     state = {
         activityList: [
-            { "aTitle": "", "aType": "", "aImg": "","aContent": "" },
+            { "aTitle": "", "aType": 1, "aImg": "", "adminImg": "","aContent": "" },
         ]
     }
     render() {
@@ -35,7 +39,7 @@ class activityNew extends Component {
                                 onChange={this.name_change} />
                         </div>
                         <div className="form-group">
-                            <label className="control-label" htmlFor="Img">活動圖片</label>
+                            <label className="control-label" htmlFor="Img">活動圖片 <small className='text-danger'>(上限100KB)</small></label>
                             <input className="form-control" type="file" accept="image/*"
                                 id="imgFile" name="Img"
                                 onChange={this.file_change} />
@@ -89,22 +93,42 @@ class activityNew extends Component {
     }
 
     file_change = (e) => {
-        console.log(e.target.files);
-        const reader = new FileReader();
-        reader.readAsDataURL(e.target.files[0]);
-        reader.onload = () => {
-            let newState = {...this.state};
-            newState.activityList[0].aImg = reader.result;
-            this.setState(newState);
-            console.log(this.state.activityList[0]);
+        const file = e.target.files[0];
+        const maxSize = 100000; // 100KB
+        if (file.size > maxSize) {
+            MySwal.fire({
+                position: 'center',
+                icon: 'error',
+                title: '檔案過大請上傳小一點...',
+                showConfirmButton: false,
+                timer: 3000
+              })
+        } else {
+            console.log(file.type);
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                let newState = {...this.state};
+                newState.activityList[0].aImg = reader.result;
+                newState.activityList[0].adminImg = reader.result.split(',')[1];
+                this.setState(newState);
+            }
         }
-        
     }
 
     ok_click = async () => {
         let url = "http://localhost:2407/activityboard/new";
-        await axios.put(url, this.state.activityList[0]);
-        alert("OK");
+        let data = this.state.activityList[0];
+        console.log(data);
+        await axios.put(url, data);
+        // alert("OK");
+        MySwal.fire({
+            position: 'center',
+            icon: 'success',
+            title: '活動新增成功',
+            showConfirmButton: false,
+            timer: 3000
+          })
         window.location = "/admin/activity";
     }
 }

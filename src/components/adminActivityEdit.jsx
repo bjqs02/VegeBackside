@@ -2,12 +2,29 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+const MySwal = withReactContent(Swal);
 
 class activityEdit extends Component {
     state = {
         activityList: [
-            { "aTitle": "", "aType": "", "aImg": "", "aContent": "" },
+            { 
+            "actCat": "1", 
+            "actImg": "", 
+            "imgText": "" ,
+            "actTitle": "", 
+            "actid": "", 
+            "acttime": "", 
+            "adminImg": "" ,
+            "imgType": "" 
+        },
+        ],
+        imgPreview: [
+            {"file": ""}
         ]
+        
     }
     render() {
         return (<div className='container ms-auto me-auto w-75'>
@@ -37,6 +54,7 @@ class activityEdit extends Component {
                                 <option value="noticeActivity">佈告欄</option>
                             </select>
                         </div>
+                        
                         <div className="form-group mb-3">
                             <label className="control-label" htmlFor="Name">活動標題</label>
                             <input className="form-control" type="text"
@@ -44,8 +62,16 @@ class activityEdit extends Component {
                                 onChange={this.name_change} 
                                 value={this.state.activityList[0].actTitle}/>
                         </div>
+                        <div className="form-group mb-3">
+                            <label className="control-label" htmlFor="Img">活動圖片 <small className='text-danger'>(上限100KB)</small></label>
+                            <input className="form-control" type="file" accept="image/*"
+                                id="imgFile" name="Img"
+                                onChange={this.file_change} />
+                            <img src={`data:image/png;base64,${this.state.imgPreview[0].file}`} 
+                            alt="base64 img" style={{height: '200px'}} className='mt-3 mb-3' />
+                        </div>
                         <div className="form-group mt-3">
-                            <label className="control-label" htmlFor="Area">活動內容</label>
+                            <label >活動內容</label>
                         </div>
                         <CKEditor
                             editor={ClassicEditor}
@@ -56,7 +82,7 @@ class activityEdit extends Component {
                         />
 
                         <div className="form-group mt-3">
-                            <input type="button" value="新增"
+                            <input type="button" value="更新"
                                 className="btn btn-success"
                                 onClick={this.ok_click} />
                             <a href="/admin/activity" className="btn btn-primary ms-3">取消</a>
@@ -80,7 +106,11 @@ class activityEdit extends Component {
         if (result.data !== this.state.activityList) {
             newState.activityList = result.data;
             newState.activityList[0].actImg = '';
+            
+            //圖片
+            newState.imgPreview[0].file = result.data[0].adminImg;
             this.setState(newState);
+            
             document.querySelector('select').value = this.state.activityList[0].actCat === 1 ? 'limitedActivity' : 'noticeActivity';
         }
         // this.setState(newState);
@@ -113,21 +143,41 @@ class activityEdit extends Component {
     }
 
     file_change = (e) => {
-        console.log(e.target.files);
-        const reader = new FileReader();
-        reader.readAsDataURL(e.target.files[0]);
-        reader.onload = () => {
-            let newState = {...this.state};
-            newState.activityList[0].actImg = reader.result;
-            this.setState(newState);
-            console.log(this.state.activityList[0]);
+        const file = e.target.files[0];
+        const maxSize = 100000; // 100KB
+        if (file.size > maxSize) {
+            MySwal.fire({
+                position: 'center',
+                icon: 'error',
+                title: '檔案過大請上傳小一點...',
+                showConfirmButton: false,
+                timer: 3000
+              })
+        } else {
+            console.log(file.type);
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                let newState = {...this.state};
+                newState.activityList[0].actImg = reader.result;
+                newState.activityList[0].adminImg = reader.result.split(',')[1];
+                newState.imgPreview[0].file = reader.result.split(',')[1];
+                newState.activityList[0].imgType = file.type;
+                this.setState(newState);
+            }
         }
     }
 
     ok_click = async () => {
         let url = "http://localhost:2407/activityboard/edit";
         await axios.put(url, this.state.activityList[0]);
-        alert("OK");
+        MySwal.fire({
+            position: 'center',
+            icon: 'success',
+            title: '活動更新成功',
+            showConfirmButton: false,
+            timer: 3000
+          })
         window.location = "/admin/activity";
     }
 }
