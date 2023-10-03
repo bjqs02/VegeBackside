@@ -17,16 +17,19 @@ import activityNew from './components/adminActivityNew';
 import activityEdit from './components/adminActivityEdit';
 import activityDelete from './components/adminActivityDelete';
 
-import adminOrder from './components/adminOrder';
+import AdminOrder from './components/adminOrder';
+import Orderpending from "./components/Orderpending";
+import Orderinactive from "./components/Orderinactive";
+
 
 class App extends Component {
 
   render() {
     return (
       <BrowserRouter>
-      <header className='ms-5'>
-        <a href='/'><img src={logo} style={{height: '70px', position: 'fixed', top: '30px', zIndex: '2'}} className='img-fluid' alt='logo'/></a>
-      </header>
+        <header className='ms-5'>
+          <a href='/'><img src={logo} style={{ height: '70px', position: 'fixed', top: '30px', zIndex: '2' }} className='img-fluid' alt='logo' /></a>
+        </header>
         <div>
           <Switch>
             {/* 首頁 */}
@@ -47,7 +50,9 @@ class App extends Component {
 
 
             {/* 訂單管理 相關路徑 */}
-            <Route path="/admin/order" component={adminOrder} />
+            <Route path="/admin/order" component={AdminOrder} exact />
+            <Route path="/admin/order/pending" component={Orderpending} exact />
+            <Route path="/admin/order/inactive" component={Orderinactive} exact />
 
           </Switch>
         </div>

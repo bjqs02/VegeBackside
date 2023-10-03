@@ -1,0 +1,11 @@
+#nav {
+    padding-top: 15%;
+}
+
+@media screen and (min-width:900px) {
+
+    #nav {
+    padding-top: 5%;
+}
+
+}
